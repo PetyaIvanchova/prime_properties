@@ -23,13 +23,13 @@ export const GET = async () => {
 
     //get users bookmarks
     const bookmarks = await Property.find({
-        _id: {$in: user.bookmarks}
+      _id: { $in: user.bookmarks },
     });
 
-    return new Response(JSON.stringify(bookmarks), {status: 200})
+    return new Response(JSON.stringify(bookmarks), { status: 200 });
   } catch (error) {
     console.log(error);
-    return new Response("Something went wrong", {status: 500})
+    return new Response("Something went wrong", { status: 500 });
   }
 };
 

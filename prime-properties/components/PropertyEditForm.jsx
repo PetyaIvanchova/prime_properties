@@ -41,28 +41,27 @@ const PropertyEditForm = () => {
 
     //fetch propertydata for form
     const fetchPropertyData = async () => {
-        try{
-            const propertyData = await fetchProperty(id);
+      try {
+        const propertyData = await fetchProperty(id);
 
-            //check for empty properties
-            if(propertyData && propertyData.rates){
-                const defaultRates = {...propertyData.rates};
-                for(const rate in defaultRates) {
-                    if(defaultRates[rate] === null){
-                        defaultRates[rate]="";
-                    }
-                }
-                propertyData.rates = defaultRates;
+        //check for empty properties
+        if (propertyData && propertyData.rates) {
+          const defaultRates = { ...propertyData.rates };
+          for (const rate in defaultRates) {
+            if (defaultRates[rate] === null) {
+              defaultRates[rate] = "";
             }
-
-            setFields(propertyData)
-
-        } catch (error){
-            console.log(error);
-        } finally {
-            setLoading(false);
+          }
+          propertyData.rates = defaultRates;
         }
-    }
+
+        setFields(propertyData);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
     fetchPropertyData();
   }, []);
@@ -116,29 +115,29 @@ const PropertyEditForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try{
-        const formData = new FormData(e.target);
-        const res = await fetch(`/api/properties/${id}`, {
-            method: 'PUT',
-            body: formData
-        });
+    try {
+      const formData = new FormData(e.target);
+      const res = await fetch(`/api/properties/${id}`, {
+        method: "PUT",
+        body: formData,
+      });
 
-        if(res.status === 200){
-            router.push(`/properties/${id}`);
-        } else if(res.status === 401 || res.status === 403){
-            toast.error('Permission denied');
-        } else {
-            toast.error('Something went wrong')
-        }
-
-    } catch (error){
-        console.log(error);
-        toast.error('Something went wrong')
+      if (res.status === 200) {
+        router.push(`/properties/${id}`);
+      } else if (res.status === 401 || res.status === 403) {
+        toast.error("Permission denied");
+      } else {
+        toast.error("Something went wrong");
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong");
     }
   };
 
   return (
-    mounted && !loading && (
+    mounted &&
+    !loading && (
       <form onSubmit={handleSubmit}>
         <h2 className="text-3xl text-center font-semibold mb-6">
           Edit Property

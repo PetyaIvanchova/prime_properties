@@ -42,32 +42,36 @@ const ProfilePage = () => {
   }, [session]);
 
   const handleDeleteProperty = async (propertyId) => {
-    const confirmed = window.confirm('Are you sure you want to delete this property');
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this property"
+    );
 
-    if(!confirmed){
-        return;
+    if (!confirmed) {
+      return;
     }
 
-    try{
-        const res = await fetch(`/api/properties/${propertyId}`, {
-            method: 'DELETE'
-        })
+    try {
+      const res = await fetch(`/api/properties/${propertyId}`, {
+        method: "DELETE",
+      });
 
-        if(res.status === 200){
-            //remove the property from state
-            const updatedProperties = properties.filter((property)=>property._id !== propertyId);
+      if (res.status === 200) {
+        //remove the property from state
+        const updatedProperties = properties.filter(
+          (property) => property._id !== propertyId
+        );
 
-            setProperties(updatedProperties);
+        setProperties(updatedProperties);
 
-            toast.success('Property deleted');
-        } else {
-            toast.error('Failed to delete property')
-        }
+        toast.success("Property deleted");
+      } else {
+        toast.error("Failed to delete property");
+      }
     } catch (error) {
-        console.log(error);
-        toast.error('Failed to delete property');
+      console.log(error);
+      toast.error("Failed to delete property");
     }
-  }
+  };
 
   return (
     <section className="bg-blue-50">
@@ -115,7 +119,10 @@ const ProfilePage = () => {
                     </Link>
                     <div className="mt-2">
                       <p className="text-lg font-semibold">{property.name}</p>
-                      <p className="text-gray-600">Address: {property.location.street} {property.location.city}</p>
+                      <p className="text-gray-600">
+                        Address: {property.location.street}{" "}
+                        {property.location.city}
+                      </p>
                     </div>
                     <div className="mt-2">
                       <Link
@@ -125,7 +132,7 @@ const ProfilePage = () => {
                         Edit
                       </Link>
                       <button
-                        onClick={()=>handleDeleteProperty(property._id)}
+                        onClick={() => handleDeleteProperty(property._id)}
                         className="bg-red-500 text-white px-3 py-2 rounded-md hover:bg-red-600"
                         type="button"
                       >

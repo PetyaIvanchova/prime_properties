@@ -146,7 +146,7 @@ const Navbar = () => {
                     />
                   </svg>
                 </button>
-                <UnreadMessagesCount session={session}/>
+                <UnreadMessagesCount session={session} />
               </Link>
               {/* <!-- Profile dropdown button --> */}
               <div className="relative ml-3">
@@ -187,8 +187,8 @@ const Navbar = () => {
                       role="menuitem"
                       tabIndex="-1"
                       id="user-menu-item-0"
-                      onClick={()=>{
-                        setIsProfileMenuOpen(false)
+                      onClick={() => {
+                        setIsProfileMenuOpen(false);
                       }}
                     >
                       Your Profile
@@ -199,14 +199,14 @@ const Navbar = () => {
                       role="menuitem"
                       tabIndex="-1"
                       id="user-menu-item-2"
-                      onClick={()=>{
-                        setIsProfileMenuOpen(false)
+                      onClick={() => {
+                        setIsProfileMenuOpen(false);
                       }}
                     >
                       Saved Properties
                     </Link>
                     <button
-                      onClick={()=>{
+                      onClick={() => {
                         setIsProfileMenuOpen(false);
                         signOut();
                       }}

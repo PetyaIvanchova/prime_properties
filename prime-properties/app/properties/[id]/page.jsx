@@ -71,13 +71,13 @@ const PropertyPage = () => {
                 <aside className="space-y-4">
                   <BookmarkButton property={property} />
                   <ShareButton property={property} />
-                  <PropertyContactForm property={property}/>
+                  <PropertyContactForm property={property} />
                 </aside>
               </div>
             </div>
           </section>
 
-          <PropertyImages images={property.images}/>
+          <PropertyImages images={property.images} />
         </>
       )}
     </>

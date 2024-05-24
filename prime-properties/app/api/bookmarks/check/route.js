@@ -2,7 +2,7 @@ import connectDB from "@/config/database";
 import User from "@/models/User";
 import { getSessionUser } from "@/utils/getSessionUser";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 export const POST = async (req) => {
   try {
@@ -22,7 +22,7 @@ export const POST = async (req) => {
     //check if property is already bookmarked
     let isBookmarked = user.bookmarks.includes(propertyId);
 
-    return new Response(JSON.stringify({isBookmarked }), {
+    return new Response(JSON.stringify({ isBookmarked }), {
       status: 200,
     });
   } catch (error) {
